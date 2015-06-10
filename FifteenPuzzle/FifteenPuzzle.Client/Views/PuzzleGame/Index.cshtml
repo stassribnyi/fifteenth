@@ -1,0 +1,54 @@
+﻿@model FifteenPuzzle.Client.Models.PuzzleGameModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        .btn {
+            font-family: SegoeUI;
+            font-size: 150%;
+            color: white;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+            background: #00bfff;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <div hidden="@Model.GetInstance.Ready">
+            <div>
+                You WIN!
+                @Html.ActionLink("Play again", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })
+            </div>
+        </div>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                @for (var i = 0; i < 4; i++)
+                {
+                    <tr>
+                        @for (var j = 0; j < 4; j++)
+                        {
+                            <td class="btn" onclick="location.href='@Url.Action("Index", "PuzzleGame", new{ Value=@Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue })'">
+                                @Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr><td colspan="4"><div><b>Moves:</b> @Model.GetInstance.Steps</div></td></tr>
+                <tr><td colspan="4">@Html.ActionLink("Reset", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })</td></tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

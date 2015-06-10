@@ -1,0 +1,26 @@
+﻿@using System.Security.Policy
+@model Lesson_ASP.NET_MVC.Models.MainModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Main"))
+        {
+            @Html.TextBoxFor(x => x.str1)
+            @Html.TextBoxFor(x=>x.str2)
+            <input type="submit" value="Check"/>
+            <p>Result = @ViewBag.Result</p>
+        } 
+    </div>
+</body>
+</html>

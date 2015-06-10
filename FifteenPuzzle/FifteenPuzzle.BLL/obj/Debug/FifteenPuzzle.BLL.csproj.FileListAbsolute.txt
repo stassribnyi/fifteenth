@@ -1,0 +1,5 @@
+C:\Users\Stas\Documents\Visual Studio 2013\Projects\FifteenPuzzle\FifteenPuzzle.BLL\bin\Debug\FifteenPuzzle.BLL.dll
+C:\Users\Stas\Documents\Visual Studio 2013\Projects\FifteenPuzzle\FifteenPuzzle.BLL\bin\Debug\FifteenPuzzle.BLL.pdb
+C:\Users\Stas\Documents\Visual Studio 2013\Projects\FifteenPuzzle\FifteenPuzzle.BLL\obj\Debug\FifteenPuzzle.BLL.dll
+C:\Users\Stas\Documents\Visual Studio 2013\Projects\FifteenPuzzle\FifteenPuzzle.BLL\obj\Debug\FifteenPuzzle.BLL.pdb
+C:\Users\Stas\Documents\Visual Studio 2013\Projects\FifteenPuzzle\FifteenPuzzle.BLL\obj\Debug\FifteenPuzzle.BLL.csprojResolveAssemblyReference.cache

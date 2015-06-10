@@ -1,0 +1,24 @@
+﻿@model FifteenPuzzle.Models.PuzzleGameModel
+@{
+    ViewBag.Title = "FifteenGame";
+}
+
+<h2>FifteenGame</h2>
+
+<div>
+    <table class="table">
+        <thead></thead>
+    <tbody>
+        @for (var i = 0; i < 4; i++)
+        {
+            <tr>
+                @for (var j = 0; j < 4; j++)
+                {
+                    <td onclick="location.href='@Url.Action("FifteenGame", "PuzzleGame", new { x = j + 1, y = i + 1 })'">@Model.GetPuzzlesField[i, j].PuzzleValue</td>
+                }
+            </tr>
+        }
+    </tbody>
+        </table>
+</div>
+
