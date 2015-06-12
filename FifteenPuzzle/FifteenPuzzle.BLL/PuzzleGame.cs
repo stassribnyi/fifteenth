@@ -89,6 +89,7 @@ namespace FifteenPuzzle.BLL
 
             InitPosition();
 
+            Steps = 0;
             Ready = true;
         }
 

@@ -8,47 +8,57 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <style>
-        .btn {
-            font-family: SegoeUI;
-            font-size: 150%;
-            color: white;
-            text-align: center;
-            width: 60px;
-            height: 60px;
-            background: #00bfff;
-        }
-    </style>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/PuzzleStyle.css" rel="stylesheet" />
     <title>Index</title>
 </head>
 <body>
-    <div>
+    <div class="col-sm-3">
         <div hidden="@Model.GetInstance.Ready">
-            <div>
-                You WIN!
-                @Html.ActionLink("Play again", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })
+            <div class="panel panel-success">
+                <div class="panel-heading">Exelent!!! You WIN!</div>
+                <div class="panel-body">
+                    @Html.ActionLink("Play again", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })
+                </div>
             </div>
         </div>
-        <table class="table">
-            <thead></thead>
-            <tbody>
-                @for (var i = 0; i < 4; i++)
-                {
-                    <tr>
-                        @for (var j = 0; j < 4; j++)
-                        {
-                            <td class="btn" onclick="location.href='@Url.Action("Index", "PuzzleGame", new{ Value=@Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue })'">
-                                @Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue
-                            </td>
-                        }
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr><td colspan="4"><div><b>Moves:</b> @Model.GetInstance.Steps</div></td></tr>
-                <tr><td colspan="4">@Html.ActionLink("Reset", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })</td></tr>
-            </tfoot>
-        </table>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">PuzzleGame</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <table class="table">
+                        <thead></thead>
+                        <tbody>
+                            @for (var i = 0; i < 4; i++)
+                            {
+                            <tr>
+                                @for (var j = 0; j < 4; j++)
+                                    {
+                                    <td class="btn btn-primary" onclick="location.href='@Url.Action("Index", "PuzzleGame", new{ Value=@Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue })'">
+                                        @Model.GetInstance.GetPuzzlesField[i, j].PuzzleValue
+                                    </td>
+                                    }
+                            </tr>
+                            }
+                        </tbody>
+
+                        <tfoot>
+                            <tr><td colspan="4"><div><b>Steps: </b>@Model.GetInstance.Steps</div></td></tr>
+                            <tr><td colspan="4">@Html.ActionLink("New Game", "NewGame", "PuzzleGame", new { reset = true }, new { @class = "hrefClassName", @id = "hrefId" })</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
     </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+
+

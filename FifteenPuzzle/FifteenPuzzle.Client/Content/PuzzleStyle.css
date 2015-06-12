@@ -1,0 +1,9 @@
+﻿ .btn {
+            font-family: SegoeUI;
+            margin: 0.5%;
+            font-size: 150%;
+            color: white;
+            text-align: center;
+            width: 60px;
+            height: 60px;
+        }
