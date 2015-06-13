@@ -18,14 +18,16 @@ namespace FifteenPuzzle.Client.Controllers
                 return View(instanse);
             }
 
-             if (!instanse.GetInstance.Ready) return View(instanse);
+            if (!instanse.GetInstance.Ready) return View(instanse);
 
-             var currentPuzzle = instanse.GetInstance.GetByValue(value);
-             instanse.GetInstance.Go(currentPuzzle);
-             instanse.GetInstance.Verify();
-             Session["Game"] = instanse;
 
-             return View(instanse);
+            var currentPuzzle = instanse.GetInstance.GetByValue(value);
+            if (currentPuzzle != null) instanse.GetInstance.Go(currentPuzzle);
+            instanse.GetInstance.Verify();
+
+            Session["Game"] = instanse;
+
+            return View(instanse);
         }
 
         [HttpGet]
@@ -34,7 +36,7 @@ namespace FifteenPuzzle.Client.Controllers
             var instanse = Session["Game"] as PuzzleGameModel;
 
             if (!reset) return View("Index", instanse);
-            if (instanse!=null)
+            if (instanse != null)
                 instanse.GetInstance.Shuffle();
 
             return View("Index", instanse);
