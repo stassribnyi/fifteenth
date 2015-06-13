@@ -21,7 +21,6 @@ namespace FifteenPuzzle.BLL
             Shuffle();
         }
 
-        public Position EmptyPuzzlePosition { get; set; }
         public bool Ready { get; set; }
         public int Steps { get; set; }
         
@@ -93,16 +92,6 @@ namespace FifteenPuzzle.BLL
             Ready = true;
         }
 
-        private void Swap(Puzzle a, Puzzle b)
-        {
-            var tmp = b.PuzzleValue;
-
-            b.PuzzleValue = a.PuzzleValue;
-            a.PuzzleValue = tmp;
-
-            Steps++;
-        }
-
         public bool Verify()
         {
             if (_gamePuzzles[15].PuzzleValue != " ") return false;
@@ -128,9 +117,9 @@ namespace FifteenPuzzle.BLL
                 {
                     for (var j = i; j < puzzles.Count; j++)
                     {
-                        if (puzzles[j].PuzzleValue != " ")
-                            if (Convert.ToInt32(puzzles[i].PuzzleValue) > Convert.ToInt32(puzzles[j].PuzzleValue))
-                                sum++;
+                        if (puzzles[j].PuzzleValue == " ") continue;
+                        if (Convert.ToInt32(puzzles[i].PuzzleValue) > Convert.ToInt32(puzzles[j].PuzzleValue))
+                            sum++;
                     }
                 }
             }
@@ -148,21 +137,16 @@ namespace FifteenPuzzle.BLL
                 Swap(currentPuzzle, emptyPuzzle);
         }
 
-        private Puzzle GetEmptyPuzzle()
+        private void Swap(Puzzle a, Puzzle b)
         {
-            var emptyPuzzle = new Puzzle();
+            var tmp = b.PuzzleValue;
 
-            for (var i = 0; i <= GetPuzzlesField.GetUpperBound(0); i++)
-                for (var j = 0; j <= GetPuzzlesField.GetUpperBound(1); j++)
-                {
-                    if (GetPuzzlesField[i, j].PuzzleValue == " ")
-                    {
-                        emptyPuzzle = GetPuzzlesField[i, j];
-                    }
-                }
-            return emptyPuzzle;
+            b.PuzzleValue = a.PuzzleValue;
+            a.PuzzleValue = tmp;
+
+            Steps++;
         }
-
+        
         private bool CanMove(Puzzle a, Puzzle b)
         {
             var way = new Position();
@@ -180,7 +164,12 @@ namespace FifteenPuzzle.BLL
 
         public Puzzle GetByValue(string value)
         {
-            return _gamePuzzles.Last(x => x.PuzzleValue == value);
+            return _gamePuzzles.FirstOrDefault(x => x.PuzzleValue == value);
+        }
+        
+        private Puzzle GetEmptyPuzzle()
+        {
+            return _gamePuzzles.FirstOrDefault(x => x.PuzzleValue == " ");
         }
     }
 }
